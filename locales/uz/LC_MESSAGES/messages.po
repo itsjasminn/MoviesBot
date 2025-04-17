@@ -1,0 +1,131 @@
+# Uzbek translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-02-18 19:55+0500\n"
+"PO-Revision-Date: 2025-02-18 19:56+0500\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: uz\n"
+"Language-Team: uz <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: bot/handler/drama_movies_handler.py:19
+#: bot/handler/drama_movies_handler.py:59
+msgid "🎬 Forrest Gump (1994)"
+msgstr "🎬 Forrest Gump (1994)"
+
+#: bot/handler/drama_movies_handler.py:19
+msgid "🎬 Titanic (1997)"
+msgstr "🎬 Titanik (1997)"
+
+#: bot/handler/drama_movies_handler.py:19
+msgid "🎬 Joker (2019)"
+msgstr "🎬 Joker (2019)"
+
+#: bot/handler/drama_movies_handler.py:19
+msgid "🎬 The Whale (2022)"
+msgstr "🎬 Kit (2022)"
+
+#: bot/handler/drama_movies_handler.py:19
+#: bot/handler/drama_movies_handler.py:44
+#: bot/handler/drama_movies_handler.py:55
+#: bot/handler/drama_movies_handler.py:65 bot/handler/main_menu_handler.py:66
+#: bot/handler/main_menu_handler.py:79
+msgid "⬅️ Back"
+msgstr "⬅️ Orqaga"
+
+#: bot/handler/drama_movies_handler.py:22
+msgid "Choose the movie."
+msgstr "Filmni tanlang."
+
+#: bot/handler/drama_movies_handler.py:27
+msgid ""
+"🎬 <b>Forrest Gump (1994)</b>\n"
+"⭐ <b>IMDb Rating</b>: 8.8/10\n"
+"🎭 <b>Genre</b>: Drama, Romance\n"
+"🎥 <b>Director</b>: Robert Zemeckis\n"
+"👤 <b>Starring</b>: Tom Hanks, Robin Wright, Gary Sinise\n"
+"🏆 <b>Awards</b>: Won 6 Academy Awards, including Best Picture 🎬 & Best "
+"Actor (Tom Hanks) 🏅\n"
+"📖 <b>Plot Summary</b>: Forrest Gump is a kind-hearted man with a low IQ "
+"but an extraordinary life. He unwittingly takes part in major historical "
+"events, fighting in the Vietnam War, becoming a table tennis champion, "
+"and even investing in Apple. However, his true dream is to reunite with "
+"his childhood love, Jenny.\n"
+"\n"
+"Do you want to watch it?"
+msgstr ""
+"🎬 <b>Forrest Gump (1994)</b>\n"
+"⭐ <b>IMDb reytingi</b>: 8.8/10\n"
+"🎭 <b>Janr</b>: Drama, Romantika\n"
+"🎥 <b>Rejissor</b>: Robert Zemeckis\n"
+"👤 <b>Bosh rollarda</b>: Tom Hanks, Robin Wright, Gary Sinise\n"
+"🏆 <b>Mukofotlar</b>: 6 ta Akademiya mukofoti sohibi, jumladan Eng yaxshi "
+"film 🎬 & Eng yaxshi aktyor (Tom Hanks) 🏅\n"
+"📖 <b>Qisqacha syujet</b>: Forrest Gump – ezgu qalbli, ammo past IQ "
+"darajasiga ega erkak bo‘lib, hayoti mo‘jizalarga to‘la. U bexosdan "
+"tarixiy voqealarning guvohiga aylanadi, Vyetnam urushida qatnashadi, stol"
+" tennisi bo‘yicha chempion bo‘ladi, hatto Apple kompaniyasiga sarmoya "
+"kiritadi. Ammo uning asosiy orzusi – bolalikdagi sevgisi Jenny bilan "
+"qayta uchrashishdir.\n"
+"\n"
+"Tomosha qilmoqchimisiz?"
+
+#: bot/handler/drama_movies_handler.py:42
+msgid "Yes"
+msgstr "Ha"
+
+#: bot/handler/drama_movies_handler.py:43
+msgid "No"
+msgstr "Yo‘q"
+
+#: bot/handler/drama_movies_handler.py:69
+msgid "You can watch other better movies!"
+msgstr "Siz boshqa va yanada qiziqarli filmlarni tomosha qilishingiz mumkin!"
+
+#: bot/handler/main_menu_handler.py:39 bot/handler/main_menu_handler.py:59
+msgid "🏠 Main menu"
+msgstr "🏠 Asosiy menyu"
+
+#: bot/handler/main_menu_handler.py:45
+msgid "I will help you to find the movies!"
+msgstr "Men sizga filmlar topishga yordam beraman!"
+
+#: bot/handler/main_menu_handler.py:53 bot/handler/main_menu_handler.py:69
+msgid "🎥 Movies section"
+msgstr "🎥 Filmlar bo‘limi"
+
+#: bot/handler/main_menu_handler.py:53
+msgid "📞 Contact us"
+msgstr "📞 Biz bilan bog‘lanish"
+
+#: bot/handler/main_menu_handler.py:66
+msgid "🎭 Drama"
+msgstr "🎭 Drama"
+
+#: bot/handler/main_menu_handler.py:66
+msgid "😂 Comedy"
+msgstr "😂 Komediya"
+
+#: bot/handler/main_menu_handler.py:66
+msgid "🎬 Action"
+msgstr "🎬 Jangari"
+
+#: bot/handler/main_menu_handler.py:78
+msgid "📞 Call"
+msgstr "📞 Qo‘ng‘iroq qilish"
+
+#: bot/handler/main_menu_handler.py:83
+#, fuzzy
+msgid "To contact with us: +998887718871 or click the button below👇🏿"
+msgstr "Biz bilan bog'lanish uchun: +998887718871 yoki pasdagi tugmani bosing 👇🏿"
+
