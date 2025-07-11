@@ -1,14 +1,12 @@
 from aiogram import F
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, KeyboardButton
-from aiogram.utils.keyboard import ReplyKeyboardBuilder
 from aiogram.utils.i18n import gettext as _, lazy_gettext as __
-
+from aiogram.utils.keyboard import ReplyKeyboardBuilder
 
 from bot.buttons.reply import build_reply_button
 from bot.dispatcher import dp
-from bot.handler.main_menu_handler import SectorState
-
+from bot.handler.main_menu import SectorState
 
 
 @dp.message(SectorState.movies_section, F.text == __("🎭 Drama"))
@@ -20,8 +18,9 @@ from bot.handler.main_menu_handler import SectorState
 @dp.message(SectorState.forest_gump, F.text == __("⬅️ Back"))
 @dp.message(SectorState.titanic, F.text == __("⬅️ Back"))
 async def dramas_handler(message: Message, state: FSMContext):
-    texts = [_("🎬 Forrest Gump (1994)"), _("🎬 Titanic (1997)"), _("🎬 Joker (2019)"), _("🎬 The Whale (2022)"), _("⬅️ Back")]
-    markup = build_reply_button(texts, (2,2,1))
+    texts = [_("🎬 Forrest Gump (1994)"), _("🎬 Titanic (1997)"), _("🎬 Joker (2019)"), _("🎬 The Whale (2022)"),
+             _("⬅️ Back")]
+    markup = build_reply_button(texts, (2, 2, 1))
     await state.set_state(SectorState.dramas_section)
     await message.answer(_("Choose the movie."), reply_markup=markup)
 
@@ -41,11 +40,10 @@ async def forrest_gump(message: Message, state: FSMContext):
         "Do you want to watch it?"
     ))
 
-
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("Yes")),
             KeyboardButton(text=_("⬅️ Back")))
-    rkb.adjust(2,1)
+    rkb.adjust(2, 1)
     rkb = rkb.as_markup(resize_keyboard=True)
     await state.set_state(SectorState.forest_gump)
     await message.answer(text, reply_markup=rkb, parse_mode='HTML')
@@ -53,7 +51,7 @@ async def forrest_gump(message: Message, state: FSMContext):
 
 @dp.message(SectorState.forest_gump, F.text == __("Yes"))
 async def yes_handler(message: Message, state: FSMContext):
-    video_id = "BAACAgIAAxkBAAEdMjtntHYOqx5qe2AGRWeWtI0OCTTUVQAC0GEAAh3voEnekZsaBJie_zYE"
+    video_id = "BAACAgIAAxkBAAINLWhwpE_rZ_cvr6VifZoO-aqNWXqqAALkYgAC9XK5SeqQVnNkPDoRNgQ"
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("⬅️ Back")))
     rkb.adjust(1)
@@ -82,7 +80,7 @@ async def titanic(message: Message, state: FSMContext):
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("Yes")),
             KeyboardButton(text=_("⬅️ Back")))
-    rkb.adjust(2,1)
+    rkb.adjust(2, 1)
     rkb = rkb.as_markup(resize_keyboard=True)
     await state.set_state(SectorState.titanic)
     await message.answer(text, reply_markup=rkb, parse_mode='HTML')
@@ -90,7 +88,7 @@ async def titanic(message: Message, state: FSMContext):
 
 @dp.message(SectorState.titanic, F.text == __("Yes"))
 async def yes_handler_drama_titanic(message: Message, state: FSMContext):
-    video_id = "BAACAgQAAxkBAAEdOhxnuBs7I_BG5SVHOWRhG7GJ3a5eZwACkQcAAp13GVFBo4PBWS4obTYE"
+    video_id = "BAACAgQAAxkBAAINWGhwrTcXiyFdYz9nX1OAIke9WnhJAAKRBwACnXcZUW6NfGgXi-Q_NgQ"
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("⬅️ Back")))
     rkb.adjust(1)
@@ -118,7 +116,7 @@ async def joker(message: Message, state: FSMContext):
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("Yes")),
             KeyboardButton(text=_("⬅️ Back")))
-    rkb.adjust(2,1)
+    rkb.adjust(2, 1)
     rkb = rkb.as_markup(resize_keyboard=True)
     await state.set_state(SectorState.joker)
     await message.answer(text, reply_markup=rkb, parse_mode='HTML')
@@ -126,7 +124,7 @@ async def joker(message: Message, state: FSMContext):
 
 @dp.message(SectorState.joker, F.text == __("Yes"))
 async def yes_handler_drama_titanic(message: Message, state: FSMContext):
-    video_id = "BAACAgQAAxkBAAEdOhxnuBs7I_BG5SVHOWRhG7GJ3a5eZwACkQcAAp13GVFBo4PBWS4obTYE"
+    video_id = "BAACAgQAAxkBAAINWGhwrTcXiyFdYz9nX1OAIke9WnhJAAKRBwACnXcZUW6NfGgXi-Q_NgQ"
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("⬅️ Back")))
     rkb.adjust(1)
@@ -154,7 +152,7 @@ async def whale(message: Message, state: FSMContext):
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("Yes")),
             KeyboardButton(text=_("⬅️ Back")))
-    rkb.adjust(2,1)
+    rkb.adjust(2, 1)
     rkb = rkb.as_markup(resize_keyboard=True)
     await state.set_state(SectorState.whale)
     await message.answer(text, reply_markup=rkb, parse_mode='HTML')
@@ -162,7 +160,7 @@ async def whale(message: Message, state: FSMContext):
 
 @dp.message(SectorState.whale, F.text == __("Yes"))
 async def yes_handler_drama_titanic(message: Message, state: FSMContext):
-    video_id = "BAACAgIAAxkBAAEdOjdnuCi9HDO8rvc6t5aRgJylbA9x-gACg2QAAvVywUnQ-QfKXdJCxDYE"
+    video_id = "BAACAgIAAxkBAAINYGhwramd5nceoLKPM23pi56FUY1oAAKDZAAC9XLBSYqpzAQxKl-ENgQ"
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("⬅️ Back")))
     rkb.adjust(1)

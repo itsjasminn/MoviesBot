@@ -1,96 +1,58 @@
-from dataclasses import dataclass
+from enum import Enum
+from typing import Optional
+
+from sqlalchemy import String, ForeignKey, VARCHAR, BigInteger, Table, Column
+from sqlalchemy.orm import Mapped, mapped_column, relationship, validates
+
+from db.base import TimeBasedModel, Base
 
 
-import psycopg2
-from os import getenv
-from dotenv import load_dotenv
-from idna.idnadata import joining_types
+class User(TimeBasedModel):
+    class Type(Enum):
+        USER = "USER"
+        ADMIN = "ADMIN"
+        SUPER_USER = "SUPERUSER"
 
-load_dotenv("/Users/user/PycharmProjects/MultiLangP29/.env")
+    first_name: Mapped[str] = mapped_column(VARCHAR(100), nullable=True)
+    last_name: Mapped[Optional[str]] = mapped_column(VARCHAR(100), nullable=True)
+    phone_number: Mapped[Optional[str]] = mapped_column(VARCHAR(100), nullable=True)
+    username: Mapped[Optional[str]] = mapped_column(VARCHAR(100), nullable=True)
+    telegram_id: Mapped[int] = mapped_column(BigInteger, unique=True, nullable=False)
+
+    # type: # Mapped[Type] = mapped_column(SQLEnum(Type), default=Type.USER)
+
+    @validates('phone_number')
+    def validate_phone_number(self):
+        phone_number = self.phone_number
+        if len(phone_number) == 13:
+            raise ValueError("failed simple email validation")
+        return phone_number
 
 
-def to_dict(cursor):
-    columns = list(cursor.description)
-    result = cursor.fetchall()
-    results = []
-    for row in result:
-        row_dict = {}
-        for i, col in enumerate(columns):
-            row_dict[col.name] = row[i]
-        results.append(row_dict)
-    return results
-# .env
-class DB:
-    DB_NAME = getenv('DB_NAME')
-    USER = getenv('DB_USER')
-    PORT = getenv('DB_PORT')
-    HOST = getenv('DB_HOST')
-    PASSWORD = getenv('DB_PASSWORD')
-    connect = psycopg2.connect(dbname = DB_NAME,user=USER,password=PASSWORD,host=HOST,port=PORT)     # PEP8
-    cursor = connect.cursor()
+association_table = Table(
+    "association_table",
+    Base.metadata,
+    Column("category_id", ForeignKey("category.id"), primary_key=True),
+    Column("movie_id", ForeignKey("movie.id"), primary_key=True))
 
-class CRUD(DB):
-    def get_objects(self ,*cols) -> list:
-        data: list[dict] = self.get(*cols)
-        objects = []
-        for d in data:
-            obj = self.__class__(**d)
-            objects.append(obj)
-        return objects
-    def save(self):
-        cols = [key for key , val in self.__dict__.items() if val != None]
-        args = [val for key , val in self.__dict__.items() if val != None]
-        table_name = self.__class__.__name__.lower() + "s"
-        cols_format = ",".join(cols)
-        values_format = ",".join(["%s"]*len(cols))
-        query = f"""insert into {table_name}({cols_format}) values ({values_format})"""
-        self.cursor.execute(query , args)
-        self.connect.commit()
-    def get(self , *cols):
-        cols_format = "*"
-        if cols:
-            cols_format = ",".join(cols)
-        table_name = self.__class__.__name__.lower() + "s"
-        condition_attr = [key for key , val in self.__dict__.items() if val != None]
-        condition_val = [val for key , val in self.__dict__.items() if val != None]
-        condition_format = "where "+"= %s and ".join(condition_attr) + " = %s" if condition_attr else ""
-        query = f"""select {cols_format} from {table_name}  {condition_format}"""
-        self.cursor.execute(query , condition_val)
-        return to_dict(self.cursor)
 
-    def update(self , **kwargs):
-        condition_attr = [key for key , val in self.__dict__.items() if val != None]
-        condition_val = [val for key , val in self.__dict__.items() if val != None]
+class Category(TimeBasedModel):
+    __tablename__ = "category"
 
-        set_attr = " = %s , ".join(kwargs.keys()) + " = %s"
-        set_val = list(kwargs.values())
-        condition_format = "where "+"= %s and ".join(condition_attr) + " = %s" if condition_attr else ""
+    name: Mapped[str] = mapped_column(String(), nullable=False)
+    movies: Mapped[list["Movie"]] = relationship("Movie", back_populates="category")
 
-        table_name = self.__class__.__name__.lower() + "s"
 
-        query = f"""update {table_name} set {set_attr} {condition_format}"""
-        self.cursor.execute(query , set_val + condition_val)
-        self.connect.commit()
-    def delete(self , **kwargs):
-        condition_attr = [key for key, val in self.__dict__.items() if val != None]
-        condition_val = [val for key, val in self.__dict__.items() if val != None]
-        condition_format = "where "+"= %s and ".join(condition_attr) + " = %s" if condition_attr else ""
-        table_name = self.__class__.__name__.lower() + "s"
-        query = f"""delete from {table_name}  {condition_format}"""
-        self.cursor.execute(query , condition_val)
-        self.connect.commit()
-@dataclass
-class Category(CRUD):
-    id : int = None
-    drama : str = None
-    comedy : str = None
-    action : str = None
+class Movie(TimeBasedModel):
+    __tablename__ = "movie"
 
-@dataclass
-class Movies(CRUD):
-    id : int = None
-    title : str = None
-    director : str = None
-    actors : str = None
-    description : str = None
-    category_id : int = None
+    title: Mapped[str] = mapped_column(String(), nullable=False)
+    rating: Mapped[str] = mapped_column(String())
+    genre: Mapped[str] = mapped_column(String())
+    cast: Mapped[str] = mapped_column(String())
+    awards: Mapped[str] = mapped_column(String())
+    plot: Mapped[str] = mapped_column(String())
+    video_id: Mapped[str] = mapped_column(String())
+    director: Mapped[str] = mapped_column(String(), nullable=False)
+    category_id: Mapped[int] = mapped_column(ForeignKey("category.id"), nullable=False)
+    category: Mapped["Category"] = relationship("Category", back_populates="movies")

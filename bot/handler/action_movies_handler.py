@@ -19,8 +19,9 @@ from bot.states import SectorState
 @dp.message(SectorState.yes_hand_action_damsel, F.text == __("⬅️ Back"))
 @dp.message(SectorState.mr_mrs_smith, F.text == __("⬅️ Back"))
 async def action_handler(message: Message, state: FSMContext):
-    texts = [_("🎬 Mr. & Mrs.Smith (2005)"), _("🎬 Damsel (2024)"), _("🎬 Avengers: Endgame (2019)"), _("🎬 Fury (2014)"), _("⬅️ Back")]
-    markup = build_reply_button(texts, (2,2,1))
+    texts = [_("🎬 Mr. & Mrs.Smith (2005)"), _("🎬 Damsel (2024)"), _("🎬 Avengers: Endgame (2019)"), _("🎬 Fury (2014)"),
+             _("⬅️ Back")]
+    markup = build_reply_button(texts, (2, 2, 1))
     await state.set_state(SectorState.action_section)
     await message.answer(_("Choose the movie."), reply_markup=markup)
 
@@ -41,7 +42,7 @@ async def smiths(message: Message, state: FSMContext):
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("Yes")),
             KeyboardButton(text=_("⬅️ Back")))
-    rkb.adjust(2,1)
+    rkb.adjust(2, 1)
     rkb = rkb.as_markup(resize_keyboard=True)
     await state.set_state(SectorState.mr_mrs_smith)
     await message.answer(text, reply_markup=rkb, parse_mode='HTML')
@@ -49,7 +50,7 @@ async def smiths(message: Message, state: FSMContext):
 
 @dp.message(SectorState.mr_mrs_smith, F.text == __("Yes"))
 async def yes_handler_action_smiths(message: Message, state: FSMContext):
-    video_id = "BAACAgQAAxkBAAEdOgdnuBKwjbu5yvhN2xW85vKuqxB-2gACARcAAm5s4FGGfnPbq_hgvTYE"
+    video_id = "BAACAgQAAxkBAAINlWhwr_TOs3jOqmiyZGM6qhHPm5KBAAIBFwACbmzgUQVjA0HPIsFuNgQ"
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("⬅️ Back")))
     rkb.adjust(1)
@@ -78,7 +79,7 @@ async def damsel(message: Message, state: FSMContext):
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("Yes")),
             KeyboardButton(text=_("⬅️ Back")))
-    rkb.adjust(2,1)
+    rkb.adjust(2, 1)
     rkb = rkb.as_markup(resize_keyboard=True)
     await state.set_state(SectorState.damsel)
     await message.answer(text, reply_markup=rkb, parse_mode='HTML')
@@ -86,7 +87,7 @@ async def damsel(message: Message, state: FSMContext):
 
 @dp.message(SectorState.damsel, F.text == __("Yes"))
 async def yes_handler_action_damsel(message: Message, state: FSMContext):
-    video_id = "BAACAgQAAxkBAAEdOg9nuBQmL1l3NbF008OAChN5JFkoDwACIxAAAvoKcVBVXCLjvGTozTYE"
+    video_id = "BAACAgQAAxkBAAINnGhwsKvVJP1SATfldj_ZwQGLEtdpAAIjEAAC-gpxUNTOaApt2R4kNgQ"
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("⬅️ Back")))
     rkb.adjust(1)
@@ -114,7 +115,7 @@ async def avengers(message: Message, state: FSMContext):
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("Yes")),
             KeyboardButton(text=_("⬅️ Back")))
-    rkb.adjust(2,1)
+    rkb.adjust(2, 1)
     rkb = rkb.as_markup(resize_keyboard=True)
     await state.set_state(SectorState.avengers)
     await message.answer(text, reply_markup=rkb, parse_mode='HTML')
@@ -122,7 +123,7 @@ async def avengers(message: Message, state: FSMContext):
 
 @dp.message(SectorState.avengers, F.text == __("Yes"))
 async def yes_handler_action_avengers(message: Message, state: FSMContext):
-    video_id = "BAACAgIAAxkBAAEdOhFnuBhIaVw7U4PHL2-psJqN_UL31AACtwMAAvZOQUrdsTefrmrHrDYE"
+    video_id = "BAACAgIAAxkBAAINoGhwsMfCaEyFTPPkNHhCfnt0uLXkAAK3AwAC9k5BSny9_2LjpqRcNgQ"
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("⬅️ Back")))
     rkb.adjust(1)
@@ -150,7 +151,7 @@ async def fury(message: Message, state: FSMContext):
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("Yes")),
             KeyboardButton(text=_("⬅️ Back")))
-    rkb.adjust(2,1)
+    rkb.adjust(2, 1)
     rkb = rkb.as_markup(resize_keyboard=True)
     await state.set_state(SectorState.fury)
     await message.answer(text, reply_markup=rkb, parse_mode='HTML')
@@ -162,7 +163,6 @@ async def yes_handler_action_fury(message: Message, state: FSMContext):
     rkb.add(KeyboardButton(text=_("⬅️ Back")))
     rkb.adjust(1)
     rkb = rkb.as_markup(resize_keyboard=True)
-    video_id = "BAACAgIAAxkBAAEdOhVnuBn-7wIwtY2ZZeJRtEJSdcWsIwAC3gcAApmaKUkLEFHV3zncmjYE"
+    video_id = "BAACAgIAAxkBAAINoGhwsMfCaEyFTPPkNHhCfnt0uLXkAAK3AwAC9k5BSny9_2LjpqRcNgQ"
     await state.set_state(SectorState.yes_hand_action_fury)
     await message.answer_video(video_id, caption=_("🎬 Fury (2014)"))
-

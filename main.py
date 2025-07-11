@@ -1,17 +1,15 @@
 import asyncio
 import logging
 import sys
-from os import getenv
 
 from aiogram import Bot
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from aiogram.utils.i18n import FSMI18nMiddleware, I18n
-
-from bot.handler import *
 from dotenv import load_dotenv
 
-from bot.utils.settings import on_startup, on_shutdown
+from bot.handler import *
+from bot.utils.settings import on_startup
 
 load_dotenv()
 import os

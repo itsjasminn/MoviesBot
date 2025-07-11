@@ -14,8 +14,9 @@ from bot.states import SectorState
 @dp.message(SectorState.yes_hand_comedy_dump, F.text == __("⬅️ Back"))
 @dp.message(SectorState.home_alone, F.text == __("⬅️ Back"))
 async def comedy_handler(message: Message, state: FSMContext):
-    texts = [_("🎬 Home Alone (1990)"), _("🎬 Dumb and Dumber (1994)"), _("🎬 The Mask (1994)"), _("🎬 Mrs. Doubtfire (1993)"), _("⬅️ Back")]
-    markup = build_reply_button(texts, (2,2,1))
+    texts = [_("🎬 Home Alone (1990)"), _("🎬 Dumb and Dumber (1994)"), _("🎬 The Mask (1994)"),
+             _("🎬 Mrs. Doubtfire (1993)"), _("⬅️ Back")]
+    markup = build_reply_button(texts, (2, 2, 1))
     await state.set_state(SectorState.comedy_section)
     await message.answer(_("Choose the movie."), reply_markup=markup)
 
@@ -38,7 +39,7 @@ async def home_alone(message: Message, state: FSMContext):
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("Yes")),
             KeyboardButton(text=_("⬅️ Back")))
-    rkb.adjust(2,1)
+    rkb.adjust(2, 1)
     rkb = rkb.as_markup(resize_keyboard=True)
     await state.set_state(SectorState.home_alone)
     await message.answer(text, reply_markup=rkb, parse_mode='HTML')
@@ -46,13 +47,14 @@ async def home_alone(message: Message, state: FSMContext):
 
 @dp.message(SectorState.home_alone, F.text == __("Yes"))
 async def yes_handler_comedy(message: Message, state: FSMContext):
-    video_id = "BAACAgIAAxkBAAEdNwVntsrYaeZq4iKjkqHt7vjDsAcsQgAC5GIAAvVyuUlsgAZaYhLOITYE"
+    video_id = "BAACAgIAAxkBAAINLWhwpE_rZ_cvr6VifZoO-aqNWXqqAALkYgAC9XK5SeqQVnNkPDoRNgQ"
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("⬅️ Back")))
     rkb.adjust(1)
     rkb = rkb.as_markup(resize_keyboard=True, one_time_keyboard=True)
     await state.set_state(SectorState.yes_hand_comedy)
     await message.answer_video(video_id, caption=_("🎬 Home Alone (1990)"))
+
 
 ##################################################################################################################
 
@@ -75,7 +77,7 @@ async def dump(message: Message, state: FSMContext):
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("Yes")),
             KeyboardButton(text=_("⬅️ Back")))
-    rkb.adjust(2,1)
+    rkb.adjust(2, 1)
     rkb = rkb.as_markup(resize_keyboard=True)
     await state.set_state(SectorState.dump)
     await message.answer(text, reply_markup=rkb, parse_mode='HTML')
@@ -90,6 +92,7 @@ async def yes_handler_dump(message: Message, state: FSMContext):
     rkb = rkb.as_markup(resize_keyboard=True)
     await state.set_state(SectorState.yes_hand_comedy_dump)
     await message.answer_video(video_id, caption=_("🎬 Dumb and Dumber (1994)"))
+
 
 ##################################################################################################################
 
@@ -113,7 +116,7 @@ async def mask(message: Message, state: FSMContext):
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("Yes")),
             KeyboardButton(text=_("⬅️ Back")))
-    rkb.adjust(2,1)
+    rkb.adjust(2, 1)
 
     rkb = rkb.as_markup(resize_keyboard=True)
     await state.set_state(SectorState.mask)
@@ -129,6 +132,7 @@ async def yes_handler_dump(message: Message, state: FSMContext):
     rkb = rkb.as_markup(resize_keyboard=True)
     await state.set_state(SectorState.yes_hand_comedy_mask)
     await message.answer_video(video_id, caption=_("🎬 The Mask (1994)"))
+
 
 ##################################################################################################################
 
@@ -152,7 +156,7 @@ async def doubtfire(message: Message, state: FSMContext):
     rkb = ReplyKeyboardBuilder()
     rkb.add(KeyboardButton(text=_("Yes")),
             KeyboardButton(text=_("⬅️ Back")))
-    rkb.adjust(2,1)
+    rkb.adjust(2, 1)
 
     rkb = rkb.as_markup(resize_keyboard=True)
     await state.set_state(SectorState.doubtfire)
@@ -168,4 +172,3 @@ async def yes_handler_doubtfire(message: Message, state: FSMContext):
     rkb = rkb.as_markup(resize_keyboard=True)
     await state.set_state(SectorState.yes_hand_comedy_doubtfire)
     await message.answer_video(video_id, caption=_("🎬 Mrs. Doubtfire (1993)"))
-

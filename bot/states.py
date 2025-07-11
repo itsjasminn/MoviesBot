@@ -29,8 +29,20 @@ class SectorState(StatesGroup):
     yes_hand_drama_joker = State()
     whale = State()
     yes_hand_comedy_dump = State()
-    yes_hand_comedy_mask= State()
+    yes_hand_comedy_mask = State()
     dump = State()
     mask = State()
     yes_hand_comedy_doubtfire = State()
     doubtfire = State()
+
+
+class AdminMovie(StatesGroup):
+    name = State()
+    rating = State()
+    genre = State()
+    director = State()
+    cast = State()
+    awards = State()
+    plot = State()
+    video_id = State()
+    category = State()
