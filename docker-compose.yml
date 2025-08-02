@@ -1,0 +1,12 @@
+version: '2.39.0'
+
+services:
+  bot:
+    build: .
+    image: movie_bot:alpine
+    container_name: movie_bot
+    restart: always
+    env_file:
+      - .env
+    command:
+      - python main.py
