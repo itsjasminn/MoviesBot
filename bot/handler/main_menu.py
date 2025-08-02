@@ -40,8 +40,11 @@ async def lang_selected_handler(callback: CallbackQuery, state: FSMContext, i18n
     ikb = InlineKeyboardBuilder()
     ikb.add(InlineKeyboardButton(text=_("🏠 Main menu"), callback_data='main'))
     ikb.adjust(1)
+    welcome = _("Welcome")
+    help_message = _("I will help you to find the movies")
+    username = html.bold(callback.from_user.full_name)
     await callback.message.edit_text(
-        text=f"{_('Welcome')}, {html.bold(callback.from_user.full_name)}!\n\n{_("I will help you to find the movies")}!",
+        text=f"{welcome}, {username}!\n\n{help_message}!",
         reply_markup=ikb.as_markup())
 
 
