@@ -125,6 +125,7 @@ msgstr "📞 Anruf"
 
 #: bot/handler/main_menu_handler.py:83
 msgid "To contact with us: +998887718871 or click the button below👇🏿"
-msgstr "Kontaktiere uns unter: +998887718871 oder klicke auf die Schaltfläche unten 👇🏿"
-
+msgstr ""
+"Kontaktiere uns unter: +998887718871 oder klicke auf die Schaltfläche "
+"unten 👇🏿"
 
