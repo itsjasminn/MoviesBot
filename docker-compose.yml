@@ -1,4 +1,4 @@
-version: '3.8'
+version: '2.39.0'
 
 services:
   bot:
@@ -8,24 +8,21 @@ services:
     restart: always
     env_file:
       - .env
-    depends_on:
-      - db
+    command: [ "python3", "main.py" ]
 
-  db:
+    depends_on:
+      - pg
+
+  pg:
     image: postgres:alpine
-    container_name: pg
+    container_name: pg_movie_bot
     restart: always
+    ports:
+      - '5433:5432'
     environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASS}
-      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_PASSWORD: 1
     volumes:
-      - pg_data:/var/lib/postgresql/data
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U ${DB_USER}" ]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+      - pg_data:/var/lib/postgres
 
 volumes:
   pg_data:

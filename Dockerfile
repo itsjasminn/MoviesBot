@@ -1,11 +1,7 @@
-FROM python:3.10-alpine
+FROM python:3.13-alpine
 
-WORKDIR /bot
-
-COPY requirements.txt .
-
-RUN pip install --no-cache-dir -r requirements.txt
+WORKDIR bot/
 
 COPY . .
 
-CMD ["python", "main.py"]
+RUN pip install --no-cache-dir -r requirements.txt
